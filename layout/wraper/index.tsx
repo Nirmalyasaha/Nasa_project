@@ -1,5 +1,6 @@
 import { Box } from "@mui/material"
 import Header from "../header"
+import Footer from "../footer"
 
 
 

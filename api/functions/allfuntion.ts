@@ -9,6 +9,8 @@ export const FetchApodApi= async()=>{
 return res?.data
 }
 
+///////
+
 
 export const FetchMarRoverImg= async()=>{
     const res =await axiosInstance.get<ImageGallery>(endpoint.Nasa.MarRoverIMGAPI)
@@ -16,9 +18,20 @@ export const FetchMarRoverImg= async()=>{
     return res?.data?.photos
 }
 
+/////
+
 
 export const FetchDonkiApi=async ()=>{
     const res=await axiosInstance.get(endpoint.Nasa.DonkiApi)
     console.log("res",res)
         return res?.data
+}
+
+
+//////
+
+export const FetchNotificationApi=async ()=>{
+    const res =await axiosInstance.get(endpoint.Nasa.Notification)
+    console.log("res",res)
+    return res?.data
 }

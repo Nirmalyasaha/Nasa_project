@@ -1,5 +1,6 @@
 import { FetchApodApi, FetchDonkiApi } from "@/api/functions/allfuntion";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import Wraper from "@/layout/wraper";
+import { Box, Skeleton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { useQuery } from "react-query";
 
 
@@ -47,31 +48,58 @@ export default function FetchDonki() {
 
 
     return (
+
         <>
-            <h1>Hello</h1>
-            <TableContainer>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            
-                            <TableCell>ActiceId</TableCell>
-                            <TableCell>ActiceId</TableCell>
-                            <TableCell>ActiceId</TableCell>
+            {isLoading ? (
+                <>
+                    <Box sx={{ width: 500 }}>
+                        <Skeleton />
+                        <Skeleton animation="wave" />
+                        <Skeleton animation={false} />
+                    </Box>
 
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>
+                </>
+            ) : (
+                <>
+                    <h1 style={{ textAlign: "center" }}> API DATA</h1>
+                    <TableContainer>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell sx={{ color: "red" }}>Activity ID</TableCell>
+                                    <TableCell sx={{ color: "red" }}>START TIME </TableCell>
+                                    <TableCell sx={{ color: "red" }}>CATALOG</TableCell>
+                                    <TableCell sx={{ color: "red" }}>NOTE</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {data?.map((item: Root, key: any) => (
+                                    <TableRow key={key.activityID}>
+                                        <TableCell sx={{color:"yellow"}}>
+                                            {item.activityID}
+                                        </TableCell>
+                                        <TableCell sx={{color:"yellow"}}>
+                                            {item.catalog}
+                                        </TableCell>
+                                        <TableCell sx={{color:"yellow"}}>
+                                            {item.startTime}
+                                        </TableCell>
+                                        <TableCell sx={{color:"yellow"}}>
+                                            {item.note}
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
 
-                            </TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
+                </>
+            )
+            }
 
 
-            </TableContainer>
         </>
+
     )
 }
 
